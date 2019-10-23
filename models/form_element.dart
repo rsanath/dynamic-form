@@ -14,4 +14,19 @@ class FormElement {
   bool disabled;
   List<String> choices; // only for choice type
   List<Rule> onInput;
+
+  FormElement({
+    this.id,
+    this.label,
+    this.value,
+    this.type,
+    this.placeholder,
+    this.initialValue,
+    this.defaultValue,
+    this.required = false,
+    this.disabled = false,
+    this.choices = const [],
+    this.onInput,
+  })  : assert(id != null),
+        assert(type != null);
 }
