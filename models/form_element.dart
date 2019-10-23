@@ -3,6 +3,7 @@ import 'rule.dart';
 
 /// An individual form element.
 class FormElement {
+  String id;
   String label;
   String placeholder;
   ElementType type;
