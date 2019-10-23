@@ -3,4 +3,5 @@ enum ActionType {
   DISABLE,
   SHOW,
   HIDE,
+  SET,
 }

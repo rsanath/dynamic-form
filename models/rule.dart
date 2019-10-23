@@ -1,8 +1,8 @@
-import 'action_type.dart';
+import 'action.dart';
 import 'condition.dart';
 
 class Rule {
   String elementId;
   Condition condition;
-  ActionType action;
+  Action action;
 }
