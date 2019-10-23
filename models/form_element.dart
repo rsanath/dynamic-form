@@ -5,11 +5,13 @@ import 'rule.dart';
 class FormElement {
   String id;
   String label;
-  String placeholder;
+  String value;
   ElementType type;
+  String placeholder;
   String initialValue;
   String defaultValue;
+  bool required;
+  bool disabled;
   List<String> choices; // only for choice type
   List<Rule> onInput;
-  bool disabled;
 }
