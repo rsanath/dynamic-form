@@ -9,5 +9,6 @@ class FormElement {
   String initialValue;
   String defaultValue;
   List<String> choices; // only for choice type
-  List<Rule> enableOn;
+  List<Rule> onInput;
+  bool disabled;
 }

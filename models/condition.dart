@@ -1,6 +1,6 @@
-/// A condition on how a rule should be evaluated.
-enum Condition {
-  IS,
-  IS_NOT,
-  CONTAINS,
+import 'condition_type.dart';
+
+class Condition {
+  ConditionType type;
+  String value;
 }
