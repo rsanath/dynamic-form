@@ -1,5 +1,5 @@
-import 'action.dart';
-import 'condition.dart';
+import '../action/action.dart';
+import '../condition/condition.dart';
 
 /// Defines an effect that might occur
 /// when a value is inputted to a [FormElement].

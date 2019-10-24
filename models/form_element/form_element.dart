@@ -1,5 +1,5 @@
 import 'element_type.dart';
-import 'rule.dart';
+import '../rule/rule.dart';
 
 /// An individual form element.
 class FormElement {

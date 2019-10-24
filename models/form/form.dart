@@ -1,4 +1,4 @@
-import 'form_element.dart';
+import '../form_element/form_element.dart';
 
 class Form {
   String name;
