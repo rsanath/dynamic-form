@@ -8,18 +8,17 @@ part of 'rule.dart';
 
 Rule _$RuleFromJson(Map<String, dynamic> json) {
   return Rule(
-    targetId: json['targetId'] as String,
     condition: json['condition'] == null
         ? null
         : Condition.fromJson(json['condition'] as Map<String, dynamic>),
-    action: json['action'] == null
-        ? null
-        : Action.fromJson(json['action'] as Map<String, dynamic>),
+    actions: (json['actions'] as List)
+        ?.map(
+            (e) => e == null ? null : Action.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
   );
 }
 
 Map<String, dynamic> _$RuleToJson(Rule instance) => <String, dynamic>{
-      'targetId': instance.targetId,
       'condition': instance.condition,
-      'action': instance.action,
+      'actions': instance.actions,
     };

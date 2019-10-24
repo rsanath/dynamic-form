@@ -8,17 +8,17 @@ part of 'form_element.dart';
 
 FormElement _$FormElementFromJson(Map<String, dynamic> json) {
   return FormElement(
-    id: json['id'] as String,
+    key: json['key'] as String,
     label: json['label'] as String,
     value: json['value'] as String,
     type: _$enumDecodeNullable(_$ElementTypeEnumMap, json['type']),
-    placeholder: json['placeholder'] as String,
     initialValue: json['initialValue'] as String,
     defaultValue: json['defaultValue'] as String,
     required: json['required'] as bool,
     disabled: json['disabled'] as bool,
+    visible: json['visible'] as bool,
     choices: (json['choices'] as List)?.map((e) => e as String)?.toList(),
-    onInput: (json['onInput'] as List)
+    rules: (json['rules'] as List)
         ?.map(
             (e) => e == null ? null : Rule.fromJson(e as Map<String, dynamic>))
         ?.toList(),
@@ -27,17 +27,17 @@ FormElement _$FormElementFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$FormElementToJson(FormElement instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'key': instance.key,
       'label': instance.label,
       'value': instance.value,
       'type': _$ElementTypeEnumMap[instance.type],
-      'placeholder': instance.placeholder,
       'initialValue': instance.initialValue,
       'defaultValue': instance.defaultValue,
       'required': instance.required,
       'disabled': instance.disabled,
+      'visible': instance.visible,
       'choices': instance.choices,
-      'onInput': instance.onInput,
+      'rules': instance.rules,
     };
 
 T _$enumDecode<T>(

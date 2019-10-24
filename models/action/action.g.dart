@@ -8,12 +8,14 @@ part of 'action.dart';
 
 Action _$ActionFromJson(Map<String, dynamic> json) {
   return Action(
+    targetKey: json['targetKey'] as String,
     type: _$enumDecodeNullable(_$ActionTypeEnumMap, json['type']),
     value: json['value'] as String,
   );
 }
 
 Map<String, dynamic> _$ActionToJson(Action instance) => <String, dynamic>{
+      'targetKey': instance.targetKey,
       'type': _$ActionTypeEnumMap[instance.type],
       'value': instance.value,
     };

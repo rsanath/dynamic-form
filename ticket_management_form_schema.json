@@ -1,0 +1,122 @@
+{
+  "title": "Support Ticket Form",
+  "elements": [
+    {
+      "label": "CreatedBy",
+      "key": "created_by",
+      "type": "TEXT",
+      "required": true,
+      "disabled": false,
+      "visible": true
+    },
+    {
+      "label": "Description",
+      "key": "description",
+      "type": "TEXT",
+      "required": true,
+      "disabled": false,
+      "visible": true,
+      "rules": [
+        {
+          "condition": {
+            "type": "IS",
+            "actions": [
+              {
+                "targetKey": "comments",
+                "type": "SHOW"
+              },
+              {
+                "targetKey": "comments",
+                "type": "ENABLE"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "Severity",
+      "key": "severity",
+      "type": "NUMBER",
+      "required": true,
+      "disabled": false,
+      "visible": true
+    },
+    {
+      "label": "Status",
+      "key": "status",
+      "type": "CHOICE",
+      "required": true,
+      "disabled": false,
+      "visible": true,
+      "choices": [
+        "CANCELLED",
+        "COMPLETED"
+      ],
+      "rules": [
+        {
+          "condition": {
+            "type": "IS",
+            "value": "CANCELLED",
+            "actions": [
+              {
+                "targetKey": "cancelled_reason",
+                "type": "SHOW"
+              },
+              {
+                "targetKey": "cancelled_reason",
+                "type": "ENABLE"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "CancelledReason",
+      "key": "cancelled_reason",
+      "type": "CHOICE",
+      "required": true,
+      "disabled": true,
+      "visible": false,
+      "choices": [
+        "ENDUSER",
+        "OTHERS"
+      ],
+      "rules": [
+        {
+          "condition": {
+            "type": "IS",
+            "value": "OTHERS",
+            "actions": [
+              {
+                "targetKey": "cancelled_other_description",
+                "type": "SHOW"
+              },
+              {
+                "targetKey": "cancelled_other_description",
+                "type": "ENABLE"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "label": "CancelledOtherDescription",
+      "key": "cancelled_other_description",
+      "type": "TEXT",
+      "required": true,
+      "disabled": true,
+      "visible": false
+    },
+    {
+      "label": "Comments",
+      "key": "comments",
+      "type": "TEXT",
+      "required": true,
+      "disabled": true,
+      "visible": false
+    }
+  ]
+}

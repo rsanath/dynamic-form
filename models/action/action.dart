@@ -4,10 +4,12 @@ part 'action.g.dart';
 
 /// Defines what should be done when a [Rule] is passed
 class Action {
+  String targetKey;
   ActionType type;
   String value;
 
   Action({
+    this.targetKey,
     this.type,
     this.value,
   });
