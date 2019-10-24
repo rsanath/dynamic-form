@@ -1,7 +1,9 @@
-import 'element_type.dart';
 import '../rule/rule.dart';
+import 'element_type.dart';
 
-/// An individual form element.
+part 'form_element.g.dart';
+
+/// An individual FormElement element.
 class FormElement {
   String id;
   String label;
@@ -29,4 +31,8 @@ class FormElement {
     this.onInput,
   })  : assert(id != null),
         assert(type != null);
+
+  factory FormElement.fromJson(Map<String, dynamic> json) => _$FormElementFromJson(json);
+
+  Map<String, dynamic> toJson() => _$FormElementToJson(this);
 }
