@@ -14,7 +14,6 @@ class FormElement {
   ElementType type;
   String initialValue;
   String defaultValue;
-  bool required;
   bool disabled;
   bool visible;
   List<Validation> validations;
@@ -28,7 +27,6 @@ class FormElement {
     this.type,
     this.initialValue,
     this.defaultValue,
-    this.required = false,
     this.disabled = false,
     this.visible = true,
     this.validations = const [],
