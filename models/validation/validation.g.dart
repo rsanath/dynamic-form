@@ -52,10 +52,8 @@ T _$enumDecodeNullable<T>(
 }
 
 const _$ValidationTypeEnumMap = {
-  ValidationType.MIN_LENGTH: 'MIN_LENGTH',
-  ValidationType.MAX_LENGTH: 'MAX_LENGTH',
   ValidationType.CONTAINS: 'CONTAINS',
   ValidationType.IS: 'IS',
-  ValidationType.GREATER_THAN: 'GREATER_THAN',
-  ValidationType.LESSER_THAN: 'LESSER_THAN',
+  ValidationType.IS_EMPTY: 'IS_EMPTY',
+  ValidationType.IS_NOT_EMPTY: 'IS_NOT_EMPTY',
 };
