@@ -8,6 +8,17 @@ String input({String prompt}) {
   return stdin.readLineSync();
 }
 
+clearScreen() {
+  var n = 50;
+  try {
+    stdout.terminalLines;
+  } catch (e) {}
+
+  for (int i = 0; i < n; i++) {
+    stdout.writeln();
+  }
+}
+
 Map<String, Object> readJson(String filePath) {
   File file = File(filePath);
   String content = file.readAsStringSync();

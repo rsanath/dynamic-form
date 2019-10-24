@@ -1,6 +1,7 @@
 import '../action/action.dart';
 import '../action/action_type.dart';
 import '../rule/rule.dart';
+import '../validation/validation.dart';
 import 'element_type.dart';
 
 part 'form_element.g.dart';
@@ -16,6 +17,7 @@ class FormElement {
   bool required;
   bool disabled;
   bool visible;
+  List<Validation> validations;
   List<String> choices; // only for choice type
   List<Rule> rules;
 
@@ -29,10 +31,17 @@ class FormElement {
     this.required = false,
     this.disabled = false,
     this.visible = true,
+    this.validations = const [],
     this.choices = const [],
     this.rules,
   })  : assert(key != null),
         assert(type != null);
+
+  bool get isValid {
+    return validations.every((validation) => validation.validate(value));
+  }
+
+  bool get isInvalid => !isValid;
 
   void updateState(Action action) {
     switch (action.type) {

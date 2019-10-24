@@ -11,6 +11,10 @@ class Form {
     this.elements,
   });
 
+  bool get isValid => elements.every((element) => element.isValid);
+
+  bool get isInvalid => !isValid;
+
   factory Form.fromJson(Map<String, dynamic> json) => _$FormFromJson(json);
 
   Map<String, dynamic> toJson() => _$FormToJson(this);

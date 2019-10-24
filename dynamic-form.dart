@@ -2,6 +2,8 @@ import 'form_controller.dart';
 import 'models/form/form.dart';
 import 'util.dart';
 
+Form form;
+
 void main(List<String> arguments) {
   if (arguments.isEmpty) {
     print("No arguments passed");
@@ -17,15 +19,22 @@ void main(List<String> arguments) {
   if (first == "-p") {
     String path = arguments[1];
     var json = readJson(path);
-    var form = Form.fromJson(json);
+    form = Form.fromJson(json);
     var controller = FormController(form: form);
-    controller.printCurrentState();
+    printCurrentState();
     return;
   }
 
   print("Unknown argument '$first' passed");
   print("Type -h or -help to see the list of commands");
   return;
+}
+
+printCurrentState() {
+  for (int i = 0; i < form.elements.length; i++) {
+    var element = form.elements[i];
+    print("$i) ${element.label} = ${element.value}");
+  }
 }
 
 void printHelp() {

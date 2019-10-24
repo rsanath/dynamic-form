@@ -18,6 +18,10 @@ FormElement _$FormElementFromJson(Map<String, dynamic> json) {
     disabled: json['disabled'] as bool,
     visible: json['visible'] as bool,
     choices: (json['choices'] as List)?.map((e) => e as String)?.toList(),
+    validations: (json['validations'] as List)
+        ?.map(
+            (e) => e == null ? null : Validation.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
     rules: (json['rules'] as List)
         ?.map(
             (e) => e == null ? null : Rule.fromJson(e as Map<String, dynamic>))
@@ -36,6 +40,7 @@ Map<String, dynamic> _$FormElementToJson(FormElement instance) =>
       'required': instance.required,
       'disabled': instance.disabled,
       'visible': instance.visible,
+      'validations': instance.validations,
       'choices': instance.choices,
       'rules': instance.rules,
     };
