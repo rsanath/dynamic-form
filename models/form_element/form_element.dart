@@ -1,3 +1,5 @@
+import '../action/action.dart';
+import '../action/action_type.dart';
 import '../rule/rule.dart';
 import 'element_type.dart';
 
@@ -31,6 +33,26 @@ class FormElement {
     this.rules,
   })  : assert(key != null),
         assert(type != null);
+
+  void updateState(Action action) {
+    switch (action.type) {
+      case ActionType.ENABLE:
+        disabled = false;
+        break;
+      case ActionType.DISABLE:
+        disabled = true;
+        break;
+      case ActionType.SHOW:
+        visible = true;
+        break;
+      case ActionType.HIDE:
+        visible = false;
+        break;
+      case ActionType.SET:
+        value = action.value;
+        break;
+    }
+  }
 
   factory FormElement.fromJson(Map<String, dynamic> json) =>
       _$FormElementFromJson(json);

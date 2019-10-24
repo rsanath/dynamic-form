@@ -11,17 +11,6 @@ class Form {
     this.elements,
   });
 
-  Map<String, String> submit() {
-    Map<String, String> formValues = {};
-
-    elements.forEach((e) {
-      if (e.disabled) return;
-      formValues[e.label] = e.value;
-    });
-
-    return formValues;
-  }
-
   factory Form.fromJson(Map<String, dynamic> json) => _$FormFromJson(json);
 
   Map<String, dynamic> toJson() => _$FormToJson(this);

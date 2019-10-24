@@ -1,3 +1,7 @@
+import 'form_controller.dart';
+import 'models/form/form.dart';
+import 'util.dart';
+
 void main(List<String> arguments) {
   if (arguments.isEmpty) {
     print("No arguments passed");
@@ -11,7 +15,12 @@ void main(List<String> arguments) {
     return;
   }
   if (first == "-p") {
-
+    String path = arguments[1];
+    var json = readJson(path);
+    var form = Form.fromJson(json);
+    var controller = FormController(form: form);
+    controller.printCurrentState();
+    return;
   }
 
   print("Unknown argument '$first' passed");
@@ -28,6 +37,4 @@ void printHelp() {
     
     Refer the ticket_management_form_schema.json for the structure of the json.
   """);
-
 }
-
