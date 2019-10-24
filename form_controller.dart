@@ -1,7 +1,6 @@
-import 'models/action/action_type.dart';
-import 'models/condition/condition_type.dart';
 import 'models/form/form.dart';
 import 'models/form_element/form_element.dart';
+import 'rule_engine.dart';
 
 class FormController {
   Form form;
@@ -19,20 +18,15 @@ class FormController {
     }
   }
 
-  void setValue(String key, String value) {
-    elements.forEach((e) {
-      if (e.key == key) {
-        e.value = value;
-        if (e.rules != null || e.rules.isNotEmpty) {
-          executeRules(e);
-        }
-      }
-    });
-    printCurrentState();
+  void setValueAtIndex(int index, String value) {
+    var element = elements[index];
+    element.value = value;
+    RuleEngine().fireRules(elements: elements, element: element);
   }
 
-  void executeRules(FormElement element) {
-
+  void setValue(String key, String value) {
+//    form.elements.forEach()
+    printCurrentState();
   }
 
   Map<String, String> submit() {
