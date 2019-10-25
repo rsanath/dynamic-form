@@ -17,4 +17,15 @@ class Rule {
   factory Rule.fromJson(Map<String, dynamic> json) => _$RuleFromJson(json);
 
   Map<String, dynamic> toJson() => _$RuleToJson(this);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Rule &&
+          runtimeType == other.runtimeType &&
+          condition == other.condition &&
+          actions == other.actions;
+
+  @override
+  int get hashCode => condition.hashCode ^ actions.hashCode;
 }

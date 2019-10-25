@@ -77,8 +77,8 @@ String helpMessage() {
   dynamic_form
   
   USAGE: 
-    dart ./dynamic_form -p path_to_a_form_schema.json.
+    dart ./main.dart -p path_to_a_form_schema.json.
     
-    Refer the ticket_management_form_schema.json for the structure of the json.
+    Refer the ticket_management_schema.json for the structure of the json.
   """;
 }

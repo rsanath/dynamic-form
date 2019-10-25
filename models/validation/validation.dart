@@ -29,4 +29,20 @@ class Validation {
       _$ValidationFromJson(json);
 
   Map<String, dynamic> toJson() => _$ValidationToJson(this);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is Validation &&
+              runtimeType == other.runtimeType &&
+              type == other.type &&
+              value == other.value;
+
+  @override
+  int get hashCode =>
+      type.hashCode ^
+      value.hashCode;
+
+
+
 }

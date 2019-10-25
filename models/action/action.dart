@@ -2,7 +2,7 @@ import 'action_type.dart';
 
 part 'action.g.dart';
 
-/// Defines what should be done when a [Rule] is passed
+/// A definition for what should happen when a [Rule] is passed.
 class Action {
   String targetKey;
   ActionType type;
@@ -17,4 +17,16 @@ class Action {
   factory Action.fromJson(Map<String, dynamic> json) => _$ActionFromJson(json);
 
   Map<String, dynamic> toJson() => _$ActionToJson(this);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Action &&
+          runtimeType == other.runtimeType &&
+          targetKey == other.targetKey &&
+          type == other.type &&
+          value == other.value;
+
+  @override
+  int get hashCode => targetKey.hashCode ^ type.hashCode ^ value.hashCode;
 }

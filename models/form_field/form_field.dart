@@ -72,4 +72,35 @@ class FormField {
       _$FormFieldFromJson(json);
 
   Map<String, dynamic> toJson() => _$FormFieldToJson(this);
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is FormField &&
+          runtimeType == other.runtimeType &&
+          key == other.key &&
+          label == other.label &&
+          value == other.value &&
+          type == other.type &&
+          initialValue == other.initialValue &&
+          defaultValue == other.defaultValue &&
+          disabled == other.disabled &&
+          visible == other.visible &&
+          validations == other.validations &&
+          choices == other.choices &&
+          rules == other.rules;
+
+  @override
+  int get hashCode =>
+      key.hashCode ^
+      label.hashCode ^
+      value.hashCode ^
+      type.hashCode ^
+      initialValue.hashCode ^
+      defaultValue.hashCode ^
+      disabled.hashCode ^
+      visible.hashCode ^
+      validations.hashCode ^
+      choices.hashCode ^
+      rules.hashCode;
 }

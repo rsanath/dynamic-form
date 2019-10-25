@@ -1,6 +1,6 @@
 import 'models/form_field/form_field.dart';
 
-void fireRules({FormField field, List<FormField> fields}) {
+void executeRules({FormField field, List<FormField> fields}) {
   if (field.rules == null || field.rules.isEmpty) return;
 
   field.rules.forEach((rule) {

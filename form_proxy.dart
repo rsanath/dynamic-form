@@ -16,24 +16,24 @@ class FormProxy {
 
   void setValueAtIndex(int index, String value) {
     var field = fields[index];
-
-    if (field.disabled) return;
-
     _setValue(field, value);
-    fireRules(fields: fields, field: field);
+    executeRules(fields: fields, field: field);
   }
 
-  /// Checks the inputted value is appropriate for the field type
-  bool _setValue(FormField field, String value) {
+  /// Checks whether the inputted value is appropriate for the field type
+  /// and then sets it.
+  void _setValue(FormField field, String value) {
+    if (field.disabled) return;
+
     var type = field.type;
     if (type == FieldType.NUMBER && parseInt(value) == null) {
-      return false;
+      return;
     }
     if (type == FieldType.CHOICE && !field.choices.contains(value)) {
-      return false;
+      return;
     }
     field.value = value;
-    return true;
+    return;
   }
 
   Map<String, String> submit() {
