@@ -57,18 +57,18 @@
         {
           "condition": {
             "type": "IS",
-            "value": "CANCELLED",
-            "actions": [
-              {
-                "targetKey": "cancelled_reason",
-                "type": "SHOW"
-              },
-              {
-                "targetKey": "cancelled_reason",
-                "type": "ENABLE"
-              }
-            ]
-          }
+            "value": "CANCELLED"
+          },
+          "actions": [
+            {
+              "targetKey": "cancelled_reason",
+              "type": "SHOW"
+            },
+            {
+              "targetKey": "cancelled_reason",
+              "type": "ENABLE"
+            }
+          ]
         }
       ]
     },
@@ -87,18 +87,18 @@
         {
           "condition": {
             "type": "IS",
-            "value": "OTHERS",
-            "actions": [
-              {
-                "targetKey": "cancelled_other_description",
-                "type": "SHOW"
-              },
-              {
-                "targetKey": "cancelled_other_description",
-                "type": "ENABLE"
-              }
-            ]
-          }
+            "value": "OTHERS"
+          },
+          "actions": [
+            {
+              "targetKey": "cancelled_other_description",
+              "type": "SHOW"
+            },
+            {
+              "targetKey": "cancelled_other_description",
+              "type": "ENABLE"
+            }
+          ]
         }
       ]
     },
