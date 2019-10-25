@@ -15,6 +15,12 @@ class Form {
 
   bool get isInvalid => !isValid;
 
+  List<String> get validationErrors {
+    return elements
+        .where((element) => element.isInvalid)
+        .map((element) => "${element.label} is invalid");
+  }
+
   factory Form.fromJson(Map<String, dynamic> json) => _$FormFromJson(json);
 
   Map<String, dynamic> toJson() => _$FormToJson(this);

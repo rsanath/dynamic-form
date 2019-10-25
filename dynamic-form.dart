@@ -6,35 +6,37 @@ Form form;
 
 void main(List<String> arguments) {
   if (arguments.isEmpty) {
-    print("No arguments passed");
-    print("Type -h or -help to see the list of commands");
+    printNoArgumentMessage();
   }
 
   String first = arguments[0];
 
-  if ("-help" == first || "-h" == first) {
-    printHelp();
-    return;
-  }
-  if (first == "-p") {
-    String path = arguments[1];
-    var json = readJson(path);
-    form = Form.fromJson(json);
-    var controller = FormController(form: form);
-    printCurrentState();
+  if (!isFormCommand(first)) {
+    print("Unknown argument '$first' passed");
     return;
   }
 
-  print("Unknown argument '$first' passed");
-  print("Type -h or -help to see the list of commands");
-  return;
+  String path = arguments[1];
+  var json = readJson(path);
+  form = Form.fromJson(json);
+  var controller = FormController(form: form);
+  printForm();
 }
 
-printCurrentState() {
+void printForm() {
   for (int i = 0; i < form.elements.length; i++) {
     var element = form.elements[i];
-    print("$i) ${element.label} = ${element.value}");
+    print("$i) ${element.toString()}");
   }
+}
+
+bool isFormCommand(String value) => value == "-p";
+
+bool isHelpCommand(String value) => "-help" == value || "-h" == value;
+
+void printNoArgumentMessage() {
+  print("""No arguments passed.
+  Type -h or -help to see the list of commands""");
 }
 
 void printHelp() {

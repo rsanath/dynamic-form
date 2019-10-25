@@ -61,6 +61,13 @@ class FormElement {
     }
   }
 
+  @override
+  String toString() {
+    final visibleText = (visible ? 'visible' : 'invisible');
+    final disabledText = (disabled ? 'disabled' : 'enabled');
+    return "${label.padRight(25)} = $value ($visibleText, $disabledText)";
+  }
+
   factory FormElement.fromJson(Map<String, dynamic> json) =>
       _$FormElementFromJson(json);
 
