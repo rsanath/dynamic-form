@@ -15,16 +15,16 @@ Action _$ActionFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$ActionToJson(Action instance) => <String, dynamic>{
-      'targetKey': instance.targetKey,
-      'type': _$ActionTypeEnumMap[instance.type],
-      'value': instance.value,
-    };
+  'targetKey': instance.targetKey,
+  'type': _$ActionTypeEnumMap[instance.type],
+  'value': instance.value,
+};
 
 T _$enumDecode<T>(
-  Map<T, dynamic> enumValues,
-  dynamic source, {
-  T unknownValue,
-}) {
+    Map<T, dynamic> enumValues,
+    dynamic source, {
+      T unknownValue,
+    }) {
   if (source == null) {
     throw ArgumentError('A value must be provided. Supported values: '
         '${enumValues.values.join(', ')}');
@@ -42,10 +42,10 @@ T _$enumDecode<T>(
 }
 
 T _$enumDecodeNullable<T>(
-  Map<T, dynamic> enumValues,
-  dynamic source, {
-  T unknownValue,
-}) {
+    Map<T, dynamic> enumValues,
+    dynamic source, {
+      T unknownValue,
+    }) {
   if (source == null) {
     return null;
   }

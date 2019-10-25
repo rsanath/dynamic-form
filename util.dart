@@ -25,3 +25,16 @@ Map<String, Object> readJson(String filePath) {
   Map<String, Object> json = jsonDecode(content);
   return json;
 }
+
+int parseInt(String val) {
+  try {
+    return int.parse(val);
+  } on FormatException catch (e) {
+    return null;
+  }
+}
+
+exitWithMessage(String message) {
+  print(message);
+  exit(0);
+}

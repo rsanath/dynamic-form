@@ -12,13 +12,13 @@ Rule _$RuleFromJson(Map<String, dynamic> json) {
         ? null
         : Condition.fromJson(json['condition'] as Map<String, dynamic>),
     actions: (json['actions'] as List)
-        ?.map(
-            (e) => e == null ? null : Action.fromJson(e as Map<String, dynamic>))
+        ?.map((e) =>
+    e == null ? null : Action.fromJson(e as Map<String, dynamic>))
         ?.toList(),
   );
 }
 
 Map<String, dynamic> _$RuleToJson(Rule instance) => <String, dynamic>{
-      'condition': instance.condition,
-      'actions': instance.actions,
-    };
+  'condition': instance.condition,
+  'actions': instance.actions,
+};
