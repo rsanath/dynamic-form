@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'form_controller.dart';
 import 'models/form/form.dart';
+import 'models/form_element/element_type.dart';
 import 'util.dart';
 
 FormController controller;
@@ -42,7 +43,9 @@ void listenForInput() {
 }
 
 void handleElementInput(int index) {
-  print("Available choices = ${controller.form.elements[index].choices.join(", ")}");
+  if (controller.elements[index].type == ElementType.CHOICE) {
+    print("Available choices = ${controller.elements[index].choices.join(", ")}");
+  }
   var value = input(prompt: "Enter value: ");
   controller.setValueAtIndex(index, value);
 }

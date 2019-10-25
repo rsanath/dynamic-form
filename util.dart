@@ -29,7 +29,7 @@ Map<String, Object> readJson(String filePath) {
 int parseInt(String val) {
   try {
     return int.parse(val);
-  } on FormatException catch (e) {
+  } on FormatException {
     return null;
   }
 }
