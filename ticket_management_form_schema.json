@@ -19,7 +19,7 @@
       "rules": [
         {
           "condition": {
-            "type": "IS",
+            "type": "IS_NOT_EMPTY",
             "actions": [
               {
                 "targetKey": "comments",
@@ -60,10 +60,6 @@
             "value": "CANCELLED"
           },
           "actions": [
-            {
-              "targetKey": "cancelled_reason",
-              "type": "SHOW"
-            },
             {
               "targetKey": "cancelled_reason",
               "type": "ENABLE"
