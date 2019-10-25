@@ -63,7 +63,7 @@ class FormElement {
 
   @override
   String toString() {
-    final visibleText = (visible ? 'visible' : 'invisible');
+    final visibleText = (visible ? 'visible' : 'invisible').padRight(10);
     final disabledText = (disabled ? 'disabled' : 'enabled');
     return "${label.padRight(25)} = $value ($visibleText, $disabledText)";
   }

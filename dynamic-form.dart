@@ -1,25 +1,24 @@
 import 'dart:io';
 
-import 'form_controller.dart';
+import 'form_proxy.dart';
 import 'models/form/form.dart';
 import 'models/form_element/element_type.dart';
 import 'util.dart';
 
-FormController controller;
+FormProxy form;
 
 void main(List<String> arguments) {
   String inputPath = getInputPath(arguments);
 
   var json = readJson(inputPath);
-  var _form = Form.fromJson(json);
-  controller = FormController(form: _form);
+  form = FormProxy(Form.fromJson(json));
   promptForm();
 }
 
 void promptForm() {
   print("Enter the command to execute or the number to provide values\n");
-  for (int i = 0; i < controller.elements.length; i++) {
-    var element = controller.elements[i];
+  for (int i = 0; i < form.elements.length; i++) {
+    var element = form.elements[i];
     print("$i) ${element.toString()}");
   }
   print("\nsubmit) Submit the form");
@@ -30,24 +29,24 @@ void promptForm() {
 void listenForInput() {
   final command = input();
   if (command == "submit") {
-    controller.submit();
+    form.submit();
   }
   if (command == "exit") {
     exit(0);
   }
   int index = parseInt(command);
-  if (index != null && 0 <= index && index <= controller.elements.length - 1) {
+  if (index != null && 0 <= index && index <= form.elements.length - 1) {
     handleElementInput(index);
   }
   promptForm();
 }
 
 void handleElementInput(int index) {
-  if (controller.elements[index].type == ElementType.CHOICE) {
-    print("Available choices = ${controller.elements[index].choices.join(", ")}");
+  if (form.elements[index].type == ElementType.CHOICE) {
+    print("Available choices = ${form.elements[index].choices.join(", ")}");
   }
   var value = input(prompt: "Enter value: ");
-  controller.setValueAtIndex(index, value);
+  form.setValueAtIndex(index, value);
 }
 
 String getInputPath(List<String> arguments) {

@@ -3,17 +3,18 @@ import 'models/form_element/form_element.dart';
 import 'rule_engine.dart';
 
 /// The API to access the [Form].
-class FormController {
-  Form form;
+class FormProxy {
+  Form _form;
 
-  FormController({
-    this.form,
-  }) : assert(form != null);
+  FormProxy(this._form) : assert(_form != null);
 
-  List<FormElement> get elements => form.elements;
+  List<FormElement> get elements => _form.elements;
 
-  void setValueAtIndex(int index, String value) {
+  setValueAtIndex(int index, String value) {
     var element = elements[index];
+
+    if (element.disabled) return;
+
     element.value = value;
     fireRules(elements: elements, element: element);
   }
