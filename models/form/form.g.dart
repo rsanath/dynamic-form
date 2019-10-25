@@ -9,14 +9,14 @@ part of 'form.dart';
 Form _$FormFromJson(Map<String, dynamic> json) {
   return Form(
     name: json['name'] as String,
-    elements: (json['elements'] as List)
+    fields: (json['fields'] as List)
         ?.map((e) =>
-            e == null ? null : FormElement.fromJson(e as Map<String, dynamic>))
+            e == null ? null : FormField.fromJson(e as Map<String, dynamic>))
         ?.toList(),
   );
 }
 
 Map<String, dynamic> _$FormToJson(Form instance) => <String, dynamic>{
       'name': instance.name,
-      'elements': instance.elements,
+      'fields': instance.fields,
     };

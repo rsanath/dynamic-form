@@ -1,17 +1,17 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'form_element.dart';
+part of 'form_field.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-FormElement _$FormElementFromJson(Map<String, dynamic> json) {
-  return FormElement(
+FormField _$FormFieldFromJson(Map<String, dynamic> json) {
+  return FormField(
     key: json['key'] as String,
     label: json['label'] as String,
     value: json['value'] as String,
-    type: _$enumDecodeNullable(_$ElementTypeEnumMap, json['type']),
+    type: _$enumDecodeNullable(_$FieldTypeEnumMap, json['type']),
     initialValue: json['initialValue'] as String,
     defaultValue: json['defaultValue'] as String,
     disabled: json['disabled'] as bool,
@@ -28,12 +28,12 @@ FormElement _$FormElementFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$FormElementToJson(FormElement instance) =>
+Map<String, dynamic> _$FormFieldToJson(FormField instance) =>
     <String, dynamic>{
       'key': instance.key,
       'label': instance.label,
       'value': instance.value,
-      'type': _$ElementTypeEnumMap[instance.type],
+      'type': _$FieldTypeEnumMap[instance.type],
       'initialValue': instance.initialValue,
       'defaultValue': instance.defaultValue,
       'disabled': instance.disabled,
@@ -75,8 +75,8 @@ T _$enumDecodeNullable<T>(
   return _$enumDecode<T>(enumValues, source, unknownValue: unknownValue);
 }
 
-const _$ElementTypeEnumMap = {
-  ElementType.TEXT: 'TEXT',
-  ElementType.CHOICE: 'CHOICE',
-  ElementType.NUMBER: 'NUMBER',
+const _$FieldTypeEnumMap = {
+  FieldType.TEXT: 'TEXT',
+  FieldType.CHOICE: 'CHOICE',
+  FieldType.NUMBER: 'NUMBER',
 };

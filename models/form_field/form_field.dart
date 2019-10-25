@@ -2,16 +2,16 @@ import '../action/action.dart';
 import '../action/action_type.dart';
 import '../rule/rule.dart';
 import '../validation/validation.dart';
-import 'element_type.dart';
+import 'field_type.dart';
 
-part 'form_element.g.dart';
+part 'form_field.g.dart';
 
-/// An individual FormElement element.
-class FormElement {
+/// An individual form field.
+class FormField {
   String key;
   String label;
   String value;
-  ElementType type;
+  FieldType type;
   String initialValue;
   String defaultValue;
   bool disabled;
@@ -20,7 +20,7 @@ class FormElement {
   List<String> choices; // only for choice type
   List<Rule> rules;
 
-  FormElement({
+  FormField({
     this.key,
     this.label,
     this.value,
@@ -68,8 +68,8 @@ class FormElement {
     return "${label.padRight(25)} = $value ($visibleText, $disabledText)";
   }
 
-  factory FormElement.fromJson(Map<String, dynamic> json) =>
-      _$FormElementFromJson(json);
+  factory FormField.fromJson(Map<String, dynamic> json) =>
+      _$FormFieldFromJson(json);
 
-  Map<String, dynamic> toJson() => _$FormElementToJson(this);
+  Map<String, dynamic> toJson() => _$FormFieldToJson(this);
 }

@@ -1,19 +1,19 @@
-import 'models/form_element/form_element.dart';
+import 'models/form_field/form_field.dart';
 
-void fireRules({FormElement element, List<FormElement> elements}) {
-  if (element.rules == null || element.rules.isEmpty) return;
+void fireRules({FormField field, List<FormField> fields}) {
+  if (field.rules == null || field.rules.isEmpty) return;
 
-  element.rules.forEach((rule) {
-    final passed = rule.condition.evaluate(element.value);
+  field.rules.forEach((rule) {
+    final passed = rule.condition.evaluate(field.value);
     if (passed) {
       rule.actions.forEach((action) {
-        var target = findElement(elements, action.targetKey);
+        var target = findField(fields, action.targetKey);
         target.updateState(action);
       });
     }
   });
 }
 
-FormElement findElement(List<FormElement> elements, String key) {
-  return elements.firstWhere((e) => e.key == key);
+FormField findField(List<FormField> fields, String key) {
+  return fields.firstWhere((e) => e.key == key);
 }

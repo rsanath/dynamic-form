@@ -1,6 +1,6 @@
 {
   "title": "Support Ticket Form",
-  "elements": [
+  "fields": [
     {
       "label": "CreatedBy",
       "key": "created_by",
