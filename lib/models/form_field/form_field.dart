@@ -41,26 +41,6 @@ class FormField {
 
   bool get isInvalid => !isValid;
 
-  void updateState(Action action) {
-    switch (action.type) {
-      case ActionType.ENABLE:
-        disabled = false;
-        break;
-      case ActionType.DISABLE:
-        disabled = true;
-        break;
-      case ActionType.SHOW:
-        visible = true;
-        break;
-      case ActionType.HIDE:
-        visible = false;
-        break;
-      case ActionType.SET:
-        value = action.value;
-        break;
-    }
-  }
-
   @override
   String toString() {
     final visibleText = (visible ? 'visible' : 'invisible').padRight(10);

@@ -57,5 +57,4 @@ const _$ActionTypeEnumMap = {
   ActionType.DISABLE: 'DISABLE',
   ActionType.SHOW: 'SHOW',
   ActionType.HIDE: 'HIDE',
-  ActionType.SET: 'SET',
 };

@@ -11,7 +11,9 @@ class ProxyForm implements IForm {
   RuleEngine _ruleEngine;
 
   ProxyForm({Form form, RuleEngine ruleEngine})
-      : assert(form != null),
+      : _form = form,
+        _ruleEngine = ruleEngine,
+        assert(form != null),
         assert(ruleEngine != null);
 
   String get name => _form.name;

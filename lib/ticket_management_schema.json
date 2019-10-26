@@ -19,18 +19,18 @@
       "rules": [
         {
           "condition": {
-            "type": "IS_NOT_EMPTY",
-            "actions": [
-              {
-                "targetKey": "comments",
-                "type": "SHOW"
-              },
-              {
-                "targetKey": "comments",
-                "type": "ENABLE"
-              }
-            ]
-          }
+            "type": "IS_NOT_EMPTY"
+          },
+          "actions": [
+            {
+              "targetKey": "comments",
+              "type": "SHOW"
+            },
+            {
+              "targetKey": "comments",
+              "type": "ENABLE"
+            }
+          ]
         }
       ]
     },

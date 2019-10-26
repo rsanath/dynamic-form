@@ -1,3 +1,7 @@
+import 'models/action/action.dart';
+import 'models/action/action_type.dart';
+import 'models/condition/condition.dart';
+import 'models/condition/condition_type.dart';
 import 'models/form_field/form_field.dart';
 
 class RuleEngine {
@@ -13,14 +17,47 @@ class RuleEngine {
     if (field.rules == null || field.rules.isEmpty) return;
 
     field.rules.forEach((rule) {
-      final passed = rule.condition.evaluate(field.value);
+      final passed = _evaluateCondition(rule.condition, field.value);
       if (passed) {
         rule.actions.forEach((action) {
           var target = _findField(fields, action.targetKey);
-          target.updateState(action);
+          _updateField(target, action);
         });
       }
     });
+  }
+
+  bool _evaluateCondition(Condition condition, String givenValue) {
+    switch (condition.type) {
+      case ConditionType.IS:
+        return givenValue == condition.value;
+      case ConditionType.IS_NOT:
+        return givenValue != condition.value;
+      case ConditionType.CONTAINS:
+        return givenValue?.contains(condition.value) ?? false;
+      case ConditionType.IS_EMPTY:
+        return givenValue?.isEmpty ?? true;
+      case ConditionType.IS_NOT_EMPTY:
+        return givenValue?.isNotEmpty ?? false;
+    }
+    return false;
+  }
+
+  void _updateField(FormField target, Action action) {
+    switch (action.type) {
+      case ActionType.ENABLE:
+        target.disabled = false;
+        break;
+      case ActionType.DISABLE:
+        target.disabled = true;
+        break;
+      case ActionType.SHOW:
+        target.visible = true;
+        break;
+      case ActionType.HIDE:
+        target.visible = false;
+        break;
+    }
   }
 
   FormField _findField(List<FormField> fields, String key) {
