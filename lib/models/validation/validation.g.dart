@@ -56,4 +56,6 @@ const _$ValidationTypeEnumMap = {
   ValidationType.IS: 'IS',
   ValidationType.IS_EMPTY: 'IS_EMPTY',
   ValidationType.IS_NOT_EMPTY: 'IS_NOT_EMPTY',
+  ValidationType.GREATER_THAN: 'GREATER_THAN',
+  ValidationType.LESSER_THAN: 'LESSER_THAN',
 };
