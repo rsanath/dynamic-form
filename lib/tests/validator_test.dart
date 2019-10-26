@@ -13,6 +13,7 @@ void main() {
 
 void testValidator() {
   printTestName("Validator Test");
+  validate_IsNot_ShouldBeInvalid();
   validate_IsNotEmpty_ShouldBeInvalid();
   validate_IsNotEmpty_ShouldBeValidWithDefaultValue();
   validate_Contains_shouldBeValid();
@@ -55,6 +56,29 @@ validate_IsNotEmpty_ShouldBeValidWithDefaultValue() {
     testName: "validate_IsNotEmpty_ShouldBeValidWithDefaultValue",
     actual: errors.length,
     expected: 0,
+  );
+}
+
+validate_IsNot_ShouldBeInvalid() {
+  final fields = [
+    FormField(
+      key: "",
+      label: "test field",
+      type: FieldType.TEXT,
+      value: "ape",
+      validations: [
+        Condition(
+          type: ConditionType.IS_NOT,
+          value: "ape"
+        ),
+      ],
+    ),
+  ];
+  final errors = validator.validate(fields);
+  assertEquals(
+    testName: "validate_IsNot_ShouldBeInvalid",
+    actual: errors.length,
+    expected: 1,
   );
 }
 
@@ -195,10 +219,7 @@ validate_Everything_ShouldBeInvalid() {
       type: FieldType.TEXT,
       value: "11",
       validations: [
-        Condition(
-            type: ConditionType.GREATER_THAN,
-            value: "100"
-        ),
+        Condition(type: ConditionType.GREATER_THAN, value: "100"),
       ],
     ),
     FormField(
@@ -207,10 +228,7 @@ validate_Everything_ShouldBeInvalid() {
       type: FieldType.TEXT,
       value: "11",
       validations: [
-        Condition(
-            type: ConditionType.LESSER_THAN,
-            value: "4"
-        ),
+        Condition(type: ConditionType.LESSER_THAN, value: "4"),
       ],
     ),
   ];
