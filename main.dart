@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'form_proxy.dart';
-import 'models/form/form.dart';
-import 'models/form_field/field_type.dart';
-import 'util.dart';
+import 'lib/form_proxy.dart';
+import 'lib/models/form/form.dart';
+import 'lib/models/form_field/field_type.dart';
+import 'lib/util.dart';
 
 FormProxy form;
 

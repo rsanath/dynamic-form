@@ -20,6 +20,12 @@ class FormProxy {
     executeRules(fields: fields, field: field);
   }
 
+  void setValueForKey(String key, String value) {
+    var field = fields.singleWhere((e) => e.key == key);
+    _setValue(field, value);
+    executeRules(fields: fields, field: field);
+  }
+
   /// Checks whether the inputted value is appropriate for the field type
   /// and then sets it.
   void _setValue(FormField field, String value) {
@@ -33,7 +39,6 @@ class FormProxy {
       return;
     }
     field.value = value;
-    return;
   }
 
   Map<String, String> submit() {

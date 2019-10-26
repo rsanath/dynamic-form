@@ -73,6 +73,8 @@ class FormField {
 
   Map<String, dynamic> toJson() => _$FormFieldToJson(this);
 
+
+
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
