@@ -1,5 +1,3 @@
-import '../action/action.dart';
-import '../action/action_type.dart';
 import '../rule/rule.dart';
 import '../validation/validation.dart';
 import 'field_type.dart';
@@ -34,12 +32,6 @@ class FormField {
     this.rules,
   })  : assert(key != null),
         assert(type != null);
-
-  bool get isValid {
-    return validations.every((validation) => validation.validate(value));
-  }
-
-  bool get isInvalid => !isValid;
 
   @override
   String toString() {

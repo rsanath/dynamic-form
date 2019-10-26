@@ -1,22 +1,23 @@
 import 'dart:io';
 
-import 'lib/form_interface.dart';
-import 'lib/proxy_form.dart';
+import 'lib/form_controller.dart';
 import 'lib/models/form/form.dart';
 import 'lib/models/form_field/field_type.dart';
 import 'lib/rule_engine.dart';
 import 'lib/util.dart';
+import 'lib/validator.dart';
 
-IForm form;
+FormController form;
 
 void main(List<String> arguments) {
   String inputPath = getInputPath(arguments);
 
   var json = readJson(inputPath);
 
-  form = ProxyForm(
+  form = FormController(
     form: Form.fromJson(json),
     ruleEngine: RuleEngine(),
+    validator: Validator(),
   );
   promptForm();
 }
