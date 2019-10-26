@@ -56,7 +56,7 @@ class FormController {
     Map<String, String> formValues = {};
     fields
         .where((e) => !e.disabled)
-        .forEach((e) => formValues[e.label] = e.value);
+        .forEach((e) => formValues[e.label] = e.value ?? e.defaultValue);
     return formValues;
   }
 }

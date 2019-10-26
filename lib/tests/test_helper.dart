@@ -1,4 +1,4 @@
-assertEquals<T>(T actual, T expected, {String testName = ""}) {
+assertEquals<T>({T actual, T expected, String testName = ""}) {
   if (actual == expected) {
     print("✅  $testName");
   } else {

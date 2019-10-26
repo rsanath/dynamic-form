@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'lib/form_controller.dart';
 import 'lib/models/form/form.dart';
@@ -36,7 +37,7 @@ void promptForm() {
 void listenForInput() {
   final command = input();
   if (command == "submit") {
-    form.submit();
+    handleSubmit();
   }
   if (command == "exit") {
     exit(0);
@@ -54,6 +55,18 @@ void handleFieldInput(int index) {
   }
   var value = input(prompt: "Enter value");
   form.setValue(index, value);
+}
+
+void handleSubmit() {
+  final errors = form.validate();
+  if (errors.isEmpty) {
+    final content = form.submit();
+    print(content);
+    exit(0);
+  } else {
+    print("The form could not be submitted because\n");
+    errors.forEach((e) => print(" ${e}"));
+  }
 }
 
 String getInputPath(List<String> arguments) {

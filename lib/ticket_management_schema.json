@@ -7,7 +7,12 @@
       "type": "TEXT",
       "required": true,
       "disabled": false,
-      "visible": true
+      "visible": true,
+      "validations": [
+        {
+          "type": "IS_NOT_EMPTY"
+        }
+      ]
     },
     {
       "label": "Description",
@@ -32,15 +37,26 @@
             }
           ]
         }
+      ],
+      "validations": [
+        {
+          "type": "IS_NOT_EMPTY"
+        }
       ]
     },
     {
       "label": "Severity",
       "key": "severity",
       "type": "NUMBER",
+      "initialValue": "10",
       "required": true,
       "disabled": false,
-      "visible": true
+      "visible": true,
+      "validations": [
+        {
+          "type": "IS_NOT_EMPTY"
+        }
+      ]
     },
     {
       "label": "Status",
@@ -65,6 +81,11 @@
               "type": "ENABLE"
             }
           ]
+        }
+      ],
+      "validations": [
+        {
+          "type": "IS_NOT_EMPTY"
         }
       ]
     },
@@ -96,6 +117,11 @@
             }
           ]
         }
+      ],
+      "validations": [
+        {
+          "type": "IS_NOT_EMPTY"
+        }
       ]
     },
     {
@@ -104,7 +130,12 @@
       "type": "TEXT",
       "required": true,
       "disabled": true,
-      "visible": false
+      "visible": false,
+      "validations": [
+        {
+          "type": "IS_NOT_EMPTY"
+        }
+      ]
     },
     {
       "label": "Comments",

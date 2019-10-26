@@ -21,21 +21,24 @@ class FormField {
   FormField({
     this.key,
     this.label,
-    this.value,
     this.type,
-    this.initialValue,
     this.defaultValue,
     this.disabled = false,
     this.visible = true,
     this.validations = const [],
     this.choices = const [],
     this.rules,
-  })  : assert(key != null),
+    String value,
+    String initialValue,
+  })  : this.value = value ?? initialValue,
+        assert(key != null),
         assert(type != null);
+
+//  String get value =>
 
   @override
   String toString() {
-    final visibleText = (visible ? 'visible' : 'invisible').padRight(10);
+    final visibleText = (visible ? 'visible' : 'invisible');
     final disabledText = (disabled ? 'disabled' : 'enabled');
     return "${label.padRight(25)} = $value ($visibleText, $disabledText)";
   }
@@ -44,8 +47,6 @@ class FormField {
       _$FormFieldFromJson(json);
 
   Map<String, dynamic> toJson() => _$FormFieldToJson(this);
-
-
 
   @override
   bool operator ==(Object other) =>
