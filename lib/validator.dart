@@ -1,6 +1,6 @@
+import 'models/condition/condition.dart';
+import 'models/condition/condition_type.dart';
 import 'models/form_field/form_field.dart';
-import 'models/validation/validation.dart';
-import 'models/validation/validation_type.dart';
 import 'util.dart';
 
 class Validator {
@@ -38,36 +38,41 @@ class Validator {
     return errors;
   }
 
-  String _isValid({Validation validation, String label, String value}) {
+  String _isValid({Condition validation, String label, String value}) {
     switch (validation.type) {
-      case ValidationType.CONTAINS:
+      case ConditionType.CONTAINS:
         if (!(value?.contains(validation.value) ?? false)) {
           return "${label} should contain ${validation.value}";
         }
         break;
-      case ValidationType.IS:
+      case ConditionType.IS:
         if (value != validation.value) {
           return "${label} should be ${validation.value}";
         }
         break;
-      case ValidationType.IS_EMPTY:
+      case ConditionType.IS_NOT:
+        if (value == validation.value) {
+          return "${label} should not be ${validation.value}";
+        }
+        break;
+      case ConditionType.IS_EMPTY:
         if (value != null || value != "") {
           return "${label} should be empty";
         }
         break;
-      case ValidationType.IS_NOT_EMPTY:
+      case ConditionType.IS_NOT_EMPTY:
         if (value == null || value == "") {
           return "${label} should not be empty";
         }
         break;
-      case ValidationType.GREATER_THAN:
+      case ConditionType.GREATER_THAN:
         final number = parseInt(value);
         final expected = parseInt(validation.value);
         if (number == null || expected == null || number < expected) {
           return "$label should be greater than $expected";
         }
         break;
-      case ValidationType.LESSER_THAN:
+      case ConditionType.LESSER_THAN:
         final number = parseInt(value);
         final expected = parseInt(validation.value);
         if (number == null || expected == null || number > expected) {

@@ -21,3 +21,7 @@ assertListEquals<T>(List<T> actual, List<T> expected, {String testName = ""}) {
   }
   print("✅  $testName");
 }
+
+printTestName(String name) {
+  print("========== $name ==========");
+}

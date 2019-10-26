@@ -1,5 +1,5 @@
+import '../condition/condition.dart';
 import '../rule/rule.dart';
-import '../validation/validation.dart';
 import 'field_type.dart';
 
 part 'form_field.g.dart';
@@ -14,7 +14,7 @@ class FormField {
   String defaultValue;
   bool disabled;
   bool visible;
-  List<Validation> validations;
+  List<Condition> validations;
   List<String> choices; // only for choice type
   List<Rule> rules;
 

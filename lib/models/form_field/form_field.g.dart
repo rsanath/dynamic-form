@@ -19,7 +19,7 @@ FormField _$FormFieldFromJson(Map<String, dynamic> json) {
     choices: (json['choices'] as List)?.map((e) => e as String)?.toList(),
     validations: (json['validations'] as List)
         ?.map(
-            (e) => e == null ? null : Validation.fromJson(e as Map<String, dynamic>))
+            (e) => e == null ? null : Condition.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     rules: (json['rules'] as List)
         ?.map(

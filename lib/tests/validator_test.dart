@@ -1,7 +1,7 @@
+import '../models/condition/condition.dart';
+import '../models/condition/condition_type.dart';
 import '../models/form_field/field_type.dart';
 import '../models/form_field/form_field.dart';
-import '../models/validation/validation.dart';
-import '../models/validation/validation_type.dart';
 import '../validator.dart';
 import 'test_helper.dart';
 
@@ -12,6 +12,7 @@ void main() {
 }
 
 void testValidator() {
+  printTestName("Validator Test");
   validate_IsNotEmpty_ShouldBeInvalid();
   validate_IsNotEmpty_ShouldBeValidWithDefaultValue();
   validate_Contains_shouldBeValid();
@@ -28,7 +29,7 @@ validate_IsNotEmpty_ShouldBeInvalid() {
       label: "test field",
       type: FieldType.TEXT,
       value: "",
-      validations: [Validation(type: ValidationType.IS_NOT_EMPTY)],
+      validations: [Condition(type: ConditionType.IS_NOT_EMPTY)],
     ),
   ];
   final errors = validator.validate(fields);
@@ -46,7 +47,7 @@ validate_IsNotEmpty_ShouldBeValidWithDefaultValue() {
       label: "test field",
       type: FieldType.TEXT,
       defaultValue: "default value",
-      validations: [Validation(type: ValidationType.IS_NOT_EMPTY)],
+      validations: [Condition(type: ConditionType.IS_NOT_EMPTY)],
     ),
   ];
   final errors = validator.validate(fields);
@@ -65,7 +66,7 @@ validate_Contains_shouldBeValid() {
       type: FieldType.TEXT,
       value: "needle in a haystack",
       validations: [
-        Validation(type: ValidationType.CONTAINS, value: "needle"),
+        Condition(type: ConditionType.CONTAINS, value: "needle"),
       ],
     ),
   ];
@@ -85,7 +86,7 @@ validate_Is_ShouldBeValidWithInitialValue() {
       type: FieldType.TEXT,
       initialValue: "ape",
       validations: [
-        Validation(type: ValidationType.IS, value: "ape"),
+        Condition(type: ConditionType.IS, value: "ape"),
       ],
     ),
   ];
@@ -105,7 +106,7 @@ validate_Is_ShouldBeInValid() {
       type: FieldType.TEXT,
       initialValue: "ape",
       validations: [
-        Validation(type: ValidationType.IS, value: "gorilla"),
+        Condition(type: ConditionType.IS, value: "gorilla"),
       ],
     ),
   ];
@@ -125,8 +126,8 @@ validate_GreaterThanAndLesserThan_ShouldBeValid() {
       type: FieldType.NUMBER,
       initialValue: "4",
       validations: [
-        Validation(type: ValidationType.GREATER_THAN, value: "1"),
-        Validation(type: ValidationType.LESSER_THAN, value: "5"),
+        Condition(type: ConditionType.GREATER_THAN, value: "1"),
+        Condition(type: ConditionType.LESSER_THAN, value: "5"),
       ],
     ),
   ];
@@ -146,8 +147,8 @@ validate_GreaterThanAndLesserThan_ShouldBeInvalid() {
       type: FieldType.NUMBER,
       initialValue: "6",
       validations: [
-        Validation(type: ValidationType.GREATER_THAN, value: "1"),
-        Validation(type: ValidationType.LESSER_THAN, value: "5"),
+        Condition(type: ConditionType.GREATER_THAN, value: "1"),
+        Condition(type: ConditionType.LESSER_THAN, value: "5"),
       ],
     ),
   ];
@@ -167,26 +168,26 @@ validate_Everything_ShouldBeInvalid() {
         type: FieldType.TEXT,
         value: "banana,avacado,apple",
         validations: [
-          Validation(type: ValidationType.CONTAINS, value: "orange")
+          Condition(type: ConditionType.CONTAINS, value: "orange")
         ]),
     FormField(
         key: "test_IS",
         label: "test_IS",
         type: FieldType.TEXT,
         value: "orange",
-        validations: [Validation(type: ValidationType.IS, value: "apple")]),
+        validations: [Condition(type: ConditionType.IS, value: "apple")]),
     FormField(
       key: "test_IS_EMPTY",
       label: "test_IS_EMPTY",
       type: FieldType.TEXT,
       value: "apple",
-      validations: [Validation(type: ValidationType.IS_EMPTY)],
+      validations: [Condition(type: ConditionType.IS_EMPTY)],
     ),
     FormField(
       key: "test_IS_NOT_EMPTY",
       label: "test_IS_NOT_EMPTY",
       type: FieldType.TEXT,
-      validations: [Validation(type: ValidationType.IS_NOT_EMPTY)],
+      validations: [Condition(type: ConditionType.IS_NOT_EMPTY)],
     ),
     FormField(
       key: "test_GREATER_THAN",
@@ -194,8 +195,8 @@ validate_Everything_ShouldBeInvalid() {
       type: FieldType.TEXT,
       value: "11",
       validations: [
-        Validation(
-            type: ValidationType.GREATER_THAN,
+        Condition(
+            type: ConditionType.GREATER_THAN,
             value: "100"
         ),
       ],
@@ -206,8 +207,8 @@ validate_Everything_ShouldBeInvalid() {
       type: FieldType.TEXT,
       value: "11",
       validations: [
-        Validation(
-            type: ValidationType.LESSER_THAN,
+        Condition(
+            type: ConditionType.LESSER_THAN,
             value: "4"
         ),
       ],

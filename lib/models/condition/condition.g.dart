@@ -56,4 +56,6 @@ const _$ConditionTypeEnumMap = {
   ConditionType.CONTAINS: 'CONTAINS',
   ConditionType.IS_EMPTY: 'IS_EMPTY',
   ConditionType.IS_NOT_EMPTY: 'IS_NOT_EMPTY',
+  ConditionType.GREATER_THAN: 'GREATER_THAN',
+  ConditionType.LESSER_THAN: 'LESSER_THAN',
 };

@@ -3,6 +3,7 @@ import 'models/action/action_type.dart';
 import 'models/condition/condition.dart';
 import 'models/condition/condition_type.dart';
 import 'models/form_field/form_field.dart';
+import 'util.dart';
 
 class RuleEngine {
   static final _singleton = RuleEngine._internal();
@@ -39,6 +40,16 @@ class RuleEngine {
         return givenValue?.isEmpty ?? true;
       case ConditionType.IS_NOT_EMPTY:
         return givenValue?.isNotEmpty ?? false;
+      case ConditionType.GREATER_THAN:
+        final number = parseInt(givenValue);
+        final expected = parseInt(condition.value);
+        if (number == null || expected == number) return false;
+        return number > expected;
+      case ConditionType.LESSER_THAN:
+        final number = parseInt(givenValue);
+        final expected = parseInt(condition.value);
+        if (number == null || expected == number) return false;
+        return number < expected;
     }
     return false;
   }
