@@ -1,17 +1,23 @@
 import 'dart:io';
 
-import 'lib/form_proxy.dart';
+import 'lib/form_interface.dart';
+import 'lib/proxy_form.dart';
 import 'lib/models/form/form.dart';
 import 'lib/models/form_field/field_type.dart';
+import 'lib/rule_engine.dart';
 import 'lib/util.dart';
 
-FormProxy form;
+IForm form;
 
 void main(List<String> arguments) {
   String inputPath = getInputPath(arguments);
 
   var json = readJson(inputPath);
-  form = FormProxy(Form.fromJson(json));
+
+  form = ProxyForm(
+    form: Form.fromJson(json),
+    ruleEngine: RuleEngine(),
+  );
   promptForm();
 }
 
@@ -46,7 +52,7 @@ void handleFieldInput(int index) {
     print("Available choices = ${form.fields[index].choices.join(", ")}");
   }
   var value = input(prompt: "Enter value");
-  form.setValueAtIndex(index, value);
+  form.setValue(index, value);
 }
 
 String getInputPath(List<String> arguments) {

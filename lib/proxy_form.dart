@@ -1,3 +1,4 @@
+import 'form_interface.dart';
 import 'models/form/form.dart';
 import 'models/form_field/field_type.dart';
 import 'models/form_field/form_field.dart';
@@ -5,25 +6,23 @@ import 'rule_engine.dart';
 import 'util.dart';
 
 /// The API to access the [Form].
-class FormProxy {
+class ProxyForm implements IForm {
   Form _form;
+  RuleEngine _ruleEngine;
 
-  FormProxy(this._form) : assert(_form != null);
+  ProxyForm({Form form, RuleEngine ruleEngine})
+      : assert(form != null),
+        assert(ruleEngine != null);
 
   String get name => _form.name;
 
   List<FormField> get fields => _form.fields;
 
-  void setValueAtIndex(int index, String value) {
+  @override
+  void setValue(int index, String value) {
     var field = fields[index];
     _setValue(field, value);
-    executeRules(fields: fields, field: field);
-  }
-
-  void setValueForKey(String key, String value) {
-    var field = fields.singleWhere((e) => e.key == key);
-    _setValue(field, value);
-    executeRules(fields: fields, field: field);
+    _ruleEngine.executeRules(fields: fields, field: field);
   }
 
   /// Checks whether the inputted value is appropriate for the field type
@@ -41,6 +40,7 @@ class FormProxy {
     field.value = value;
   }
 
+  @override
   Map<String, String> submit() {
     Map<String, String> formValues = {};
     fields

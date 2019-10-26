@@ -1,8 +1,9 @@
+import '../../form_interface.dart';
 import '../form_field/form_field.dart';
 
 part 'form.g.dart';
 
-class Form {
+class Form implements IForm {
   String name;
   List<FormField> fields;
 
@@ -24,4 +25,14 @@ class Form {
   factory Form.fromJson(Map<String, dynamic> json) => _$FormFromJson(json);
 
   Map<String, dynamic> toJson() => _$FormToJson(this);
+
+  @override
+  void setValue(int index, String value) {
+
+  }
+
+  @override
+  Map<String, String> submit() {
+
+  }
 }
