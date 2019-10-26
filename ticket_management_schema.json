@@ -48,13 +48,20 @@
       "label": "Severity",
       "key": "severity",
       "type": "NUMBER",
-      "initialValue": "10",
       "required": true,
       "disabled": false,
       "visible": true,
       "validations": [
         {
           "type": "IS_NOT_EMPTY"
+        },
+        {
+          "type": "GREATER_THAN",
+          "value": "0"
+        },
+        {
+          "type": "LESSER_THAN",
+          "value": "10"
         }
       ]
     },
@@ -79,6 +86,10 @@
             {
               "targetKey": "cancelled_reason",
               "type": "ENABLE"
+            },
+            {
+              "targetKey": "cancelled_reason",
+              "type": "SHOW"
             }
           ]
         }

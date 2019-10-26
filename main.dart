@@ -64,8 +64,8 @@ void handleSubmit() {
     print(content);
     exit(0);
   } else {
-    print("The form could not be submitted because\n");
-    errors.forEach((e) => print(" ${e}"));
+    print("The form could not be submitted because:");
+    errors.forEach((e) => print(" - ${e}"));
   }
 }
 

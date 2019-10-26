@@ -22,6 +22,7 @@ class RuleEngine {
       if (passed) {
         rule.actions.forEach((action) {
           var target = _findField(fields, action.targetKey);
+          if (target == null) return;
           _updateField(target, action);
         });
       }
@@ -72,6 +73,6 @@ class RuleEngine {
   }
 
   FormField _findField(List<FormField> fields, String key) {
-    return fields.firstWhere((e) => e.key == key);
+    return fields.firstWhere((e) => e.key == key, orElse: () => null);
   }
 }

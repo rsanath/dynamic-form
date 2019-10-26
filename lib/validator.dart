@@ -69,14 +69,14 @@ class Validator {
         final number = parseInt(value);
         final expected = parseInt(validation.value);
         if (number == null || expected == null || number < expected) {
-          return "$label should be greater than $expected";
+          return "$label should be a number greater than $expected";
         }
         break;
       case ConditionType.LESSER_THAN:
         final number = parseInt(value);
         final expected = parseInt(validation.value);
         if (number == null || expected == null || number > expected) {
-          return "$label should be lesser than $expected";
+          return "$label should be a number lesser than $expected";
         }
         break;
     }

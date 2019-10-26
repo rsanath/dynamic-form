@@ -27,6 +27,7 @@ Map<String, Object> readJson(String filePath) {
 }
 
 int parseInt(String val) {
+  if (val == null) return null;
   try {
     return int.parse(val);
   } on FormatException {

@@ -22,6 +22,16 @@ assertListEquals<T>(List<T> actual, List<T> expected, {String testName = ""}) {
   print("✅  $testName");
 }
 
+assertAllTrue(List<bool> values, {String testName = ""}) {
+  for (var value in values) {
+    if (!value) {
+      print("❌  $testName");
+      return;
+    }
+  }
+  print("✅  $testName");
+}
+
 printTestName(String name) {
   print("========== $name ==========");
 }
