@@ -54,3 +54,51 @@ Come up with a way to define such forms(code or JSON, XML etc) and also implemen
 I should be able to use the system to declare any such form with different fields and rules.  
 The system need not have any UI. You can implement a CLI (command line interface) to print the current set of elements which have to be shown and enter in values for elements from the CLI.  
 The system should also expose a way to enable submission of the form. For now lets limit this to fetching data from the form(key-value pairs).  
+
+## Solution:
+
+* Define a form schema
+
+* Pass it as argument to the program to start
+
+    `dart ./main.dart -p path_to_a_form_schema.json`
+    
+* Running test cases
+ 
+    `dart test.dart`
+
+### Form Schema
+    `
+    [
+        {
+             label: string,
+             key: string,
+             type: (TEXT, CHOICE, NUMBER),
+             required: boolean,
+             disabled: boolean,
+             visible: boolean,
+             choices: []string, // considered only for CHOICE type 
+             validations: [
+               {
+                 type: (IS, IS_NOT, CONTAINS, IS_EMPTY, IS_NOT_EMPTY, GREATER_THAN, LESSER_THAN)
+                 value: string
+               }
+             ],
+             rules: [
+               {
+                 condition: {
+                   type: (IS, IS_NOT, CONTAINS, IS_EMPTY, IS_NOT_EMPTY, GREATER_THAN, LESSER_THAN)
+                   value: string
+                 },
+                 actions: [
+                    {
+                        targetKey: string // key of the element to be affected,
+                        type: (ENABLE, DISABLE, SHOW, HIDE),
+                        value: string
+                    }
+                 ]
+               },                 
+             ]
+        }
+    ]
+    `

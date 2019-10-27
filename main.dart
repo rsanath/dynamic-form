@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:math';
 
 import 'lib/form_controller.dart';
 import 'lib/models/form/form.dart';
@@ -24,13 +23,13 @@ void main(List<String> arguments) {
 }
 
 void promptForm() {
-  print("Enter the command to execute or the number to provide values\n");
+  print("");
   for (int i = 0; i < form.fields.length; i++) {
     var field = form.fields[i];
     print("$i) ${field.toString()}");
   }
-  print("\nsubmit) Submit the form");
-  print("exit) Exit the application");
+  print("submit) Submit the form");
+  print("exit)   Exit the application\n");
   listenForInput();
 }
 
@@ -38,8 +37,7 @@ void listenForInput() {
   final command = input();
   if (command == "submit") {
     handleSubmit();
-  }
-  if (command == "exit") {
+  } else if (command == "exit") {
     exit(0);
   }
   int index = parseInt(command);
@@ -54,15 +52,18 @@ void handleFieldInput(int index) {
     print("Available choices = ${form.fields[index].choices.join(", ")}");
   }
   var value = input(prompt: "Enter value");
+  clearScreen();
   form.setValue(index, value);
 }
 
 void handleSubmit() {
+  clearScreen();
   final errors = form.validate();
   if (errors.isEmpty) {
     final content = form.submit();
-    print(content);
-    exit(0);
+    content.forEach((key, value) {
+      print("${key.padRight(28)} = $value");
+    });
   } else {
     print("The form could not be submitted because:");
     errors.forEach((e) => print(" - ${e}"));

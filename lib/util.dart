@@ -9,13 +9,10 @@ String input({String prompt}) {
 }
 
 clearScreen() {
-  var n = 50;
-  try {
-    stdout.terminalLines;
-  } catch (e) {}
-
-  for (int i = 0; i < n; i++) {
-    stdout.writeln();
+  if(Platform.isWindows) {
+    print(Process.runSync("cls", [], runInShell: true).stdout);
+  } else {
+    print(Process.runSync("clear", [], runInShell: true).stdout);
   }
 }
 

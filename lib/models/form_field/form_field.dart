@@ -34,8 +34,6 @@ class FormField {
         assert(key != null),
         assert(type != null);
 
-//  String get value =>
-
   @override
   String toString() {
     final visibleText = (visible ? 'visible' : 'invisible');
