@@ -1,7 +1,7 @@
+import 'evaluator.dart';
 import 'models/condition/condition.dart';
 import 'models/condition/condition_type.dart';
 import 'models/form_field/form_field.dart';
-import 'util.dart';
 
 /// A functional class that executes [Validation]s.
 class Validator {
@@ -19,7 +19,7 @@ class Validator {
   /// Returns a list of errors messages if any or empty list.
   List<String> validate(List<FormField> fields) {
     final errors = List<String>();
-    fields.where((field)  {
+    fields.where((field) {
       return !field.disabled;
     }).forEach((field) {
       errors.addAll(_validateField(field));
@@ -33,7 +33,7 @@ class Validator {
       return errors;
     }
     for (var validation in field.validations) {
-      final error = _isValid(
+      final error = _getValidationMessage(
         validation: validation,
         label: field.label,
         value: field.value ?? field.defaultValue,
@@ -45,48 +45,32 @@ class Validator {
     return errors;
   }
 
-  String _isValid({Condition validation, String label, String value}) {
+  String _getValidationMessage({
+    Condition validation,
+    String label,
+    String value,
+  }) {
+    final valid = evaluateCondition(validation, value);
+
+    if (valid) return null;
+
     switch (validation.type) {
       case ConditionType.CONTAINS:
-        if (!(value?.contains(validation.value) ?? false)) {
-          return "${label} should contain ${validation.value}";
-        }
-        break;
+        return "${label} should contain ${validation.value}";
       case ConditionType.IS:
-        if (value != validation.value) {
-          return "${label} should be ${validation.value}";
-        }
-        break;
+        return "${label} should be ${validation.value}";
       case ConditionType.IS_NOT:
-        if (value == validation.value) {
-          return "${label} should not be ${validation.value}";
-        }
-        break;
+        return "${label} should not be ${validation.value}";
       case ConditionType.IS_EMPTY:
-        if (value != null || value != "") {
-          return "${label} should be empty";
-        }
-        break;
+        return "${label} should be empty";
       case ConditionType.IS_NOT_EMPTY:
-        if (value == null || value == "") {
-          return "${label} should not be empty";
-        }
-        break;
+        return "${label} should not be empty";
       case ConditionType.GREATER_THAN:
-        final number = parseInt(value);
-        final expected = parseInt(validation.value);
-        if (number == null || expected == null || number < expected) {
-          return "$label should be a number greater than $expected";
-        }
-        break;
+        return "$label should be a number greater than ${validation.value}";
       case ConditionType.LESSER_THAN:
-        final number = parseInt(value);
-        final expected = parseInt(validation.value);
-        if (number == null || expected == null || number > expected) {
-          return "$label should be a number lesser than $expected";
-        }
-        break;
+        return "$label should be a number lesser than ${validation.value}";
     }
+
     return null;
   }
 }
