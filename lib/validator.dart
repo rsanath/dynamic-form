@@ -3,6 +3,7 @@ import 'models/condition/condition_type.dart';
 import 'models/form_field/form_field.dart';
 import 'util.dart';
 
+/// A functional class that executes [Validation]s.
 class Validator {
   static final _singleton = Validator._internal();
 
@@ -12,9 +13,15 @@ class Validator {
 
   Validator._internal();
 
+  /// Validates all the enabled fields in the given list.
+  /// Generates an error message for every failed [Validation].
+  ///
+  /// Returns a list of errors messages if any or empty list.
   List<String> validate(List<FormField> fields) {
     final errors = List<String>();
-    fields.where((field) => !field.disabled).forEach((field) {
+    fields.where((field)  {
+      return !field.disabled;
+    }).forEach((field) {
       errors.addAll(_validateField(field));
     });
     return errors;

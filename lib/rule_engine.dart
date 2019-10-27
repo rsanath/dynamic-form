@@ -5,6 +5,8 @@ import 'models/condition/condition_type.dart';
 import 'models/form_field/form_field.dart';
 import 'util.dart';
 
+/// A functional class that evaluates a [Rule]'s  [Condition] and performs
+/// set of [Action]s on a [FormField] based on the outcome.
 class RuleEngine {
   static final _singleton = RuleEngine._internal();
 
@@ -14,6 +16,10 @@ class RuleEngine {
 
   RuleEngine._internal();
 
+  /// Executes the given [FormField]'s [Rule]s and performs the specified
+  /// [Action]s on the target [FormField].
+  ///
+  /// Does nothing if the target [FormField] is not found.
   void executeRules({FormField field, List<FormField> fields}) {
     if (field.rules == null || field.rules.isEmpty) return;
 
@@ -21,7 +27,7 @@ class RuleEngine {
       final passed = _evaluateCondition(rule.condition, field.value);
       if (passed) {
         rule.actions.forEach((action) {
-          var target = _findField(fields, action.targetKey);
+          final target = _findField(fields, action.targetKey);
           if (target == null) return;
           _updateField(target, action);
         });

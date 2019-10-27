@@ -5,7 +5,7 @@ import 'rule_engine.dart';
 import 'util.dart';
 import 'validator.dart';
 
-/// The API to access the [Form].
+/// A proxy to interact and control the [Form].
 class FormController {
   Form _form;
   RuleEngine _ruleEngine;
@@ -24,12 +24,17 @@ class FormController {
 
   String get name => _form.name;
 
-  List<FormField> get fields => _form.fields;
+  /// Provides read only access to the form fields.
+  List<FormField> get fields => List.unmodifiable(_form.fields);
 
+  /// Sets the given value for the field at given index if
+  ///   * The field is not disabled and
+  ///   * The given value is appropriate for the [FieldType].
+  ///
+  /// Then triggers the [Rule]s for that [FormField].
   void setValue(int index, String value) {
     var field = fields[index];
 
-    if (field.disabled) return;
     if (!_isApplicable(field, value)) return;
 
     _form.setValue(index, value);
@@ -37,6 +42,8 @@ class FormController {
   }
 
   bool _isApplicable(FormField field, String value) {
+    if (field.disabled) return false;
+
     final type = field.type;
     if (type == FieldType.NUMBER && parseInt(value) == null) {
       return false;
@@ -47,8 +54,15 @@ class FormController {
     return true;
   }
 
+  /// Checks if the values for the [FormField]s are valid.
+  /// Returns a list of error messages if invalid else an empty list.
   List<String> validate() => _validator.validate(fields);
 
+  /// Returns the [FormField.label], [FormField.value] pair of all
+  /// the non disabled [FormField]s if the [Form] is valid.
+  ///
+  /// Note: Considers the [FormField.defaultValue] if the [FormField.value]
+  /// is not present.
   Map<String, String> submit() {
     final validationErrors = validate();
     if (validationErrors.isNotEmpty) return null;
