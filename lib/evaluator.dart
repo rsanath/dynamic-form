@@ -2,6 +2,7 @@ import 'models/condition/condition.dart';
 import 'models/condition/condition_type.dart';
 import 'util.dart';
 
+/// Returns true if the [givenValue] passes the given [Condition] else false.
 bool evaluateCondition(Condition condition, String givenValue) {
   switch (condition.type) {
     case ConditionType.IS:
