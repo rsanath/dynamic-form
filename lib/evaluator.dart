@@ -3,6 +3,9 @@ import 'models/condition/condition_type.dart';
 import 'util.dart';
 
 /// Returns true if the [givenValue] passes the given [Condition] else false.
+///
+/// [ConditionType.GREATER_THAN] and [ConditionType.LESSER_THAN] will be false
+/// if the [givenValue] or [Condition.value] is non-numeric.
 bool evaluateCondition(Condition condition, String givenValue) {
   switch (condition.type) {
     case ConditionType.IS:
