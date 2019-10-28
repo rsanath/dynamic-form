@@ -68,7 +68,7 @@ The system should also expose a way to enable submission of the form. For now le
     `dart test.dart`
 
 ### Form Schema
-    `
+    
     [
         {
              label: string,
@@ -95,10 +95,13 @@ The system should also expose a way to enable submission of the form. For now le
                         targetKey: string // key of the element to be affected,
                         type: (ENABLE, DISABLE, SHOW, HIDE),
                         value: string
-                    }
+                    },
+                    ...
                  ]
-               },                 
+               },
+               ...                
              ]
-        }
+        },
+        ...
     ]
-    `
+    
