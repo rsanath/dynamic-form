@@ -10,41 +10,51 @@ import 'lib/validator.dart';
 FormController form;
 
 void main(List<String> arguments) {
-  String inputPath = getInputPath(arguments);
+  final pathToSchema = getPathToSchema(arguments);
 
-  var json = readJson(inputPath);
+  final json = readJson(pathToSchema);
 
   form = FormController(
     form: Form.fromJson(json),
     ruleEngine: RuleEngine(),
     validator: Validator(),
   );
+
   promptForm();
 }
 
 void promptForm() {
   print("");
+
   for (int i = 0; i < form.fields.length; i++) {
     var field = form.fields[i];
     print("$i) ${field.toString()}");
   }
   print("submit) Submit the form");
   print("exit)   Exit the application\n");
+
   listenForInput();
 }
 
 void listenForInput() {
-  final command = input();
-  if (command == "submit") {
-    handleSubmit();
-  } else if (command == "exit") {
-    exit(0);
-  }
+  final command = input(prompt: "Enter action");
+
   int index = parseInt(command);
+
   if (index != null && 0 <= index && index <= form.fields.length - 1) {
     handleFieldInput(index);
+    promptForm();
+  } else if (command == "submit") {
+    clearScreen();
+    handleSubmit();
+    promptForm();
+  } else if (command == "exit") {
+    exit(0);
+  } else {
+    clearScreen();
+    print("Invalid command");
+    promptForm();
   }
-  promptForm();
 }
 
 void handleFieldInput(int index) {
@@ -57,7 +67,6 @@ void handleFieldInput(int index) {
 }
 
 void handleSubmit() {
-  clearScreen();
   final errors = form.validate();
   if (errors.isEmpty) {
     final content = form.submit();
@@ -70,7 +79,7 @@ void handleSubmit() {
   }
 }
 
-String getInputPath(List<String> arguments) {
+String getPathToSchema(List<String> arguments) {
   if (arguments.isEmpty) {
     exitWithMessage("No arguments passed\n${helpMessage()}");
   }
