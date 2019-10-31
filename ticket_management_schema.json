@@ -5,7 +5,6 @@
       "label": "CreatedBy",
       "key": "created_by",
       "type": "TEXT",
-      "required": true,
       "disabled": false,
       "visible": true,
       "validations": [
@@ -18,7 +17,6 @@
       "label": "Description",
       "key": "description",
       "type": "TEXT",
-      "required": true,
       "disabled": false,
       "visible": true,
       "rules": [
@@ -48,7 +46,6 @@
       "label": "Severity",
       "key": "severity",
       "type": "NUMBER",
-      "required": true,
       "disabled": false,
       "visible": true,
       "validations": [
@@ -69,7 +66,6 @@
       "label": "Status",
       "key": "status",
       "type": "CHOICE",
-      "required": true,
       "disabled": false,
       "visible": true,
       "choices": [
@@ -92,6 +88,22 @@
               "type": "SHOW"
             }
           ]
+        },
+        {
+          "condition": {
+            "type": "IS_NOT",
+            "value": "CANCELLED"
+          },
+          "actions": [
+            {
+              "targetKey": "cancelled_reason",
+              "type": "DISABLE"
+            },
+            {
+              "targetKey": "cancelled_reason",
+              "type": "HIDE"
+            }
+          ]
         }
       ],
       "validations": [
@@ -104,7 +116,6 @@
       "label": "CancelledReason",
       "key": "cancelled_reason",
       "type": "CHOICE",
-      "required": true,
       "disabled": true,
       "visible": false,
       "choices": [
@@ -127,6 +138,22 @@
               "type": "ENABLE"
             }
           ]
+        },
+        {
+          "condition": {
+            "type": "IS_NOT",
+            "value": "OTHERS"
+          },
+          "actions": [
+            {
+              "targetKey": "cancelled_other_description",
+              "type": "HIDE"
+            },
+            {
+              "targetKey": "cancelled_other_description",
+              "type": "DISABLE"
+            }
+          ]
         }
       ],
       "validations": [
@@ -139,7 +166,6 @@
       "label": "CancelledOtherDescription",
       "key": "cancelled_other_description",
       "type": "TEXT",
-      "required": true,
       "disabled": true,
       "visible": false,
       "validations": [
@@ -152,7 +178,6 @@
       "label": "Comments",
       "key": "comments",
       "type": "TEXT",
-      "required": true,
       "disabled": true,
       "visible": false
     }
